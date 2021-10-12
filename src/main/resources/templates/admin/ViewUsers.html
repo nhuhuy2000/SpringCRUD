@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+
+<html  xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <base href="/">
+    </head>
+    <body>
+        
+        <div class="container">
+            <h2>DANH SACH NGUOI DUNG</h2>
+            <p><a class="btn btn-primary" href="admin/users/add">ADD USER</a></p>
+            <p><label th:text="'Hello: '+${session.USERNAME}"></label><a href="/admin/users/login">Logout</a></p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr> 
+                        <th>UserName</th>
+                        <th>Password</th>
+                        <th>FullName</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each=" user : ${USER}">
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.password}"></td>
+                        <td th:text="${user.fullname}"></td>
+                        <td th:text="${user.age}"></td>
+                        <td> <span th:text="${user.gender}"></span> </td>
+                         <td>
+                                <a th:href="@{'/admin/users/view/' + ${user.username}}" class="btn btn-outline-info"><i class="fas fa-info"></i>View</a>
+                                <a th:href="@{'/admin/users/edit/' + ${user.username}}" class="btn btn-outline-warning"><i class="fas fa-edit" ></i>Edit</a>
+                                <a th:href="@{'/admin/users/delete/' + ${user.username}}" class="btn btn-outline-danger"><i class="fas fa-recycle"></i>Xoa</a>
+                              </td>
+                    </tr>
+                   
+                    
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
